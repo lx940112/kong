@@ -168,6 +168,8 @@
   [#10774](https://github.com/Kong/kong/pull/10774)
 - Fix issue when stopping a Kong could error out if using Vault references
   [#10775](https://github.com/Kong/kong/pull/10775)
+- Fix an issue where cli `kong vault get` doesn't work in dbless mode.
+  [#10675](https://github.com/Kong/kong/pull/10675)
 
 
 #### Admin API
