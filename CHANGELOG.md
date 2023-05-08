@@ -190,7 +190,8 @@
   [#10663](https://github.com/Kong/kong/pull/10663)
 - **gRPC gateway**: `null` in the JSON payload caused an uncaught exception to be thrown during pb.encode.
   [#10687](https://github.com/Kong/kong/pull/10687)
-- **gRPC gateway**: fixed an issue that empty arrays in JSON response to be encoded as `"{}"`.
+- **gRPC gateway**: fixed an issue that empty arrays in JSON are incorrectly encoded as `"{}"`; they are
+now encoded as `"[]"` to comply with standard.
   [#10790](https://github.com/Kong/kong/pull/10790)
 
 
