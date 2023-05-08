@@ -10,6 +10,18 @@
 
 ### Breaking Changes
 
+#### Core
+
+- The `traditional_compat` router mode has been made more compatible with the
+  behavior of `traditional` mode by splitting routes with multiple paths into
+  multiple atc routes with separate priorities.  Since the introduction of the new
+  router in Kong Gateway 3.0, `traditional_compat` mode assigned only one priority
+  to each route, even if different prefix path lengths and regular expressions
+  were mixed in a route. This was not how multiple paths were handled in the
+  `traditional` router and the behavior has now been changed so that a separate
+  priority value is assigned to each path in a route.
+  [#10615](https://github.com/Kong/kong/pull/10615)
+
 #### Plugins
 
 - **Serverless Functions**: `kong.cache` now points to a cache instance that is dedicated to the
@@ -20,6 +32,9 @@
   buffering.  The standard queue parameter set is available to
   control queuing behavior.
   [#10753](https://github.com/Kong/kong/pull/10753)
+- Tracing: tracing_sampling_rate defaults to 0.01 (trace one of every 100 requests) instead of the previous 1
+  (trace all requests). Tracing all requests is inappropriate for most production systems
+  [#10774](https://github.com/Kong/kong/pull/10774)
 
 ### Additions
 
@@ -46,8 +61,8 @@
   [#10385](https://github.com/Kong/kong/pull/10385)
 - Request and response buffering options are now enabled for incoming HTTP 2.0 requests too.
   Thanks [@PidgeyBE](https://github.com/PidgeyBE) for contributing this change.
+  [#10204](https://github.com/Kong/kong/pull/10204)
   [#10595](https://github.com/Kong/kong/pull/10595)
-  [#10204](https://github.com/Kong/kong/pull/10204)  
 - Add `KONG_UPSTREAM_DNS_TIME` to `kong.ctx` so that we can record the time it takes for DNS
   resolution when Kong proxies to upstream.
   [#10355](https://github.com/Kong/kong/pull/10355)
@@ -76,6 +91,7 @@
   Load balancers frequently utilize this functionality to ascertain
   Kong's availability to distribute incoming requests.
   [#10610](https://github.com/Kong/kong/pull/10610)
+  [#10787](https://github.com/Kong/kong/pull/10787)
 
 #### Plugins
 
@@ -148,8 +164,12 @@
   [#10681](https://github.com/Kong/kong/pull/10681)
 - Fix protocol detection of default values.
   [#10736](https://github.com/Kong/kong/pull/10736)
+- Tracing: tracing_sampling_rate defaults to 0.01 (trace one of every 100 requests) instead of the previous 1
+  (trace all requests). Tracing all requests is inappropriate for most production systems
+  [#10774](https://github.com/Kong/kong/pull/10774)
 - Fix issue when stopping a Kong could error out if using Vault references
   [#10775](https://github.com/Kong/kong/pull/10775)
+
 
 #### Admin API
 
